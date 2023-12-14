@@ -9,6 +9,8 @@ var playWindow = document.querySelector('.playWindow');
 var ball = document.querySelector('#ball');
 let isMouseDown = false;
 let isDragging = true;
+let blockArr = [];
+
 
 function getPath() {
     let windowCenterX = ball.getBoundingClientRect().x - playWindow.offsetLeft + 35 / 2;
@@ -80,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }, 1000);
             }, 100);
         }
-        
         setTimeout(resizeElement(), 1000);
     });
     
@@ -95,14 +96,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const newPath = `path('${pathData}')`;
         changePath(newPath, 1000);
-
-        
     });
 
     //------------------------------------------------
     //---ЭТОТ БЛОК БОЛЬШЕ НЕ ТРОГАТЬ!!!!!!!!!!!!!!!---
     //------------------------------------------------
-    // Обработчик события перемещения мыши внутри playWindow
     playWindow.addEventListener('mousemove', function (event) {
         if (isMouseDown == true) {
             var pathData = getPath();
@@ -124,8 +122,16 @@ function changePath(pathString, speed) {
         const difX = playWindow.offsetLeft;
         const difY = playWindow.offsetTop;
 
-        if (ball.getBoundingClientRect().x - playWindow.offsetLeft >= playWindow.offsetWidth) {
+        if (ball.getBoundingClientRect().x - playWindow.offsetLeft >= playWindow.offsetWidth && scroeCounter == 1) {
             message("Аут");
+            scroeCounter = 0;
+        }
+
+        for (var i = 0; i < 3; i++) {
+            if (isElementInside(blockArr[i])) {
+                scroeCounter = 0;
+                message("Попал в красную зону");
+            }
         }
         
         if (++x === 50) {
@@ -151,6 +157,10 @@ function changePath(pathString, speed) {
         ball.style.offsetPath = null;
         getRandBallPos(playWindow);
     }, 2001)
+}
+
+function captureObstacle() {
+
 }
 
 
@@ -277,7 +287,7 @@ function createObstacle(dif) {
     var id = 0;
     var rand = Math.floor(Math.random() * 3) + 1 + dif;
     switch (dif) {
-        case 1: //Нужно сделать
+        case 1:
             createBlock(248, 500, 100, 250, id++);
             break;
         case 2:
@@ -313,9 +323,10 @@ function createObstacle(dif) {
             createBlock(448, 798, 200, 50, id++);
             break;
     }
+    createObstacleBorders();
 }
 
-createObstacle(1);
+createObstacle(9);
 
 function createBlock(top, left, width, height, id) {
 
@@ -328,4 +339,23 @@ function createBlock(top, left, width, height, id) {
     block.style.width = `${width}px`;
 
     playWindow.appendChild(block);
+}
+
+function createObstacleBorders() {
+    for (var i = 0; i < 3; i++) {
+        const block = document.getElementById(`block${i}`);
+        if (block) {
+            blockArr.push(block);
+        }
+    }
+}
+
+function isElementInside(block) {
+    var isInside =
+        ball.getBoundingClientRect().x >= block.getBoundingClientRect().left &&
+        ball.getBoundingClientRect().y >= block.getBoundingClientRect().top &&
+        ball.getBoundingClientRect().x <= block.getBoundingClientRect().right &&
+        ball.getBoundingClientRect().y <= block.getBoundingClientRect().bottom;
+
+    return isInside;
 }
