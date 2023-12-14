@@ -37,45 +37,30 @@ function getPath() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    var isProcessing = false;
-    // Получаем элементы
     getRandBallPos(playWindow);
     var trajectory = document.querySelector('#trajectory');
 
-    // Обработчик события нажатия на мяч
     ball.addEventListener('mousedown', function (event) {
         isMouseDown = true;
-        // Получаем элемент с id "pwr"
         var pwrElement = document.getElementById('pwr');
     
-        // Флаг, который указывает, в процессе ли изменения ширины
         var isResizing = false;
     
-        // Функция для изменения ширины элемента
         function resizeElement() {
-            // Если в процессе изменения ширины, выходим из функции
             if (isResizing) return;
     
-            // Устанавливаем флаг в true
             isResizing = true;
     
-            // Уменьшаем ширину до 1px за 1 секунду
-            pwrElement.style.transition = 'width 1s';
+            pwrElement.style.transition = 'width 3s';
             pwrElement.style.width = '1px';
     
-            // Ждем 2 секунды перед восстановлением ширины
             setTimeout(function () {
-                // Увеличиваем ширину до 50px за 1 секунду
                 pwrElement.style.width = '50px';
     
-                // Ждем 1 секунду перед уменьшением ширины
                 setTimeout(function () {
-                    // Уменьшаем ширину обратно до 1px за 1 секунду
                     pwrElement.style.width = '1px';
     
-                    // Ждем 1 секунду перед сбросом флага
                     setTimeout(function () {
-                        // Сбрасываем флаг и переустанавливаем transition
                         isResizing = false;
                         pwrElement.style.transition = 'none';
                     }, 1000);
@@ -85,10 +70,9 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(resizeElement(), 1000);
     });
     
-    // Обработчик события отпускания кнопки мыши в любом месте окна
     playWindow.addEventListener('mouseup', function (event) {
         isMouseDown = false;
-        trajectory.setAttribute('d', ''); // Сбрасываем path при отпускании кнопки
+        trajectory.setAttribute('d', '');
         
         var pathData = getPath();
         console.log(pathData);
@@ -159,11 +143,6 @@ function changePath(pathString, speed) {
     }, 2001)
 }
 
-function captureObstacle() {
-
-}
-
-
 function getRandBallPos(playWindow) {
     const ball = document.getElementById('ball');
     var posX = Math.random() * (playWindow.offsetWidth / 6 * 2 - 2 * ball.offsetWidth) + ball.offsetWidth / 2;
@@ -194,13 +173,10 @@ var resets = 3;
 
 function startCountdown() {
     changeDif();
-    // Остановить предыдущий таймер, если он был запущен
     clearInterval(timer);
 
-    // Установить начальное значение таймера
     timeLeft = 20;
 
-    // Запустить новый таймер
     timer = setInterval(function () {
         timeLeft--;
 
@@ -208,14 +184,10 @@ function startCountdown() {
 
         if (timeLeft <= 0 && resets > 0) {
             resets -= 1;
-
-            // Если еще есть повторения, увеличиваем сложность и запускаем новый таймер
             if (resets > 0) {
                 dificulty += 1;
-
                 startCountdown();
             } else {
-                // Если повторений больше нет, остановить таймер
                 scroeCounter = 0;
                 clearInterval(timer);
                 finish();
@@ -250,10 +222,8 @@ function finish() {
     const userAccountIndex = accounts.findIndex(account => account.login === login);
 
     if (userAccountIndex !== -1) {
-        // Найден пользователь, обновим значение поля l1
-        if (accounts[userAccountIndex].l1 < scores) {
-            accounts[userAccountIndex].l1 = scores;
-            // Сохраняем изменения в localStorage
+        if (accounts[userAccountIndex].l2 < scores) {
+            accounts[userAccountIndex].l2 = scores;
             localStorage.setItem('accounts', JSON.stringify(accounts));
             message("Новый рекорд!");
         }
@@ -262,7 +232,7 @@ function finish() {
         console.error("Пользователь не найден");
     }
 
-    var allRecord = getMaxL1Value();
+    var allRecord = getMaxL2Value();
 
     document.getElementById("ownScore").innerHTML = scores;
     document.getElementById("allRecord").innerHTML = allRecord;
@@ -270,17 +240,15 @@ function finish() {
     document.getElementById("end").style.display = "flex";
 }
 
-function getMaxL1Value() {
+function getMaxL2Value() {
     let accounts = localStorage.getItem('accounts');
     accounts = accounts ? JSON.parse(accounts) : [];
 
-    // Используем метод reduce для нахождения максимального значения l1
-    const maxL1Value = accounts.reduce((maxL1, account) => {
-        const currentL1 = account.l1 || 0; // Предполагаем, что l1 может быть undefined
-        return Math.max(maxL1, currentL1);
-    }, accounts[0].l1 || 0); // Используем первое значение l1 в качестве начального значения
+    const maxL2Value = accounts.reduce((maxL2, account) => {
+        return Math.max(maxL2, account.l2);
+    }, accounts[0].l2);
 
-    return maxL1Value;
+    return maxL2Value;
 }
 
 function createObstacle(dif) {
@@ -356,6 +324,5 @@ function isElementInside(block) {
         ball.getBoundingClientRect().y >= block.getBoundingClientRect().top &&
         ball.getBoundingClientRect().x <= block.getBoundingClientRect().right &&
         ball.getBoundingClientRect().y <= block.getBoundingClientRect().bottom;
-
     return isInside;
 }

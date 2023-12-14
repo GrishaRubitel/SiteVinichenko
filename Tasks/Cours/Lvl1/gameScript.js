@@ -51,47 +51,29 @@ function getPath() {
 
 document.addEventListener('DOMContentLoaded', function () {
     getRandBallPos(dificulty);
-    // Получаем элементы
     var ball = document.querySelector('#ball');
     var trajectory = document.querySelector('#trajectory');
-
-    // Флаг, указывающий, что левая кнопка мыши удерживается
     isMouseDown = false;
 
-    // Обработчик события нажатия на мяч
     ball.addEventListener('mousedown', function (event) {
         isMouseDown = true;
-        // Получаем элемент с id "pwr"
         var pwrElement = document.getElementById('pwr');
-    
-        // Флаг, который указывает, в процессе ли изменения ширины
         var isResizing = false;
     
-        // Функция для изменения ширины элемента
         function resizeElement() {
-            // Если в процессе изменения ширины, выходим из функции
             if (isResizing) return;
-    
-            // Устанавливаем флаг в true
             isResizing = true;
     
-            // Уменьшаем ширину до 1px за 1 секунду
             pwrElement.style.transition = 'width 1s';
             pwrElement.style.width = '1px';
     
-            // Ждем 2 секунды перед восстановлением ширины
             setTimeout(function () {
-                // Увеличиваем ширину до 50px за 1 секунду
                 pwrElement.style.width = '50px';
     
-                // Ждем 1 секунду перед уменьшением ширины
                 setTimeout(function () {
-                    // Уменьшаем ширину обратно до 1px за 1 секунду
                     pwrElement.style.width = '1px';
     
-                    // Ждем 1 секунду перед сбросом флага
                     setTimeout(function () {
-                        // Сбрасываем флаг и переустанавливаем transition
                         isResizing = false;
                         pwrElement.style.transition = 'none';
                     }, 3000);
@@ -102,16 +84,9 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(resizeElement(), 1000);
     });
     
-    // Обработчик события отпускания кнопки мыши
-    ball.addEventListener('mouseup', function (event) {
-        // В этом месте вы можете добавить дополнительные действия, если необходимо
-        // например, прекратить анимацию или выполнить какие-то другие действия при отпускании кнопки мыши
-    });
-    
-    // Обработчик события отпускания кнопки мыши в любом месте окна
     playWindow.addEventListener('mouseup', function (event) {
         isMouseDown = false;
-        trajectory.setAttribute('d', ''); // Сбрасываем path при отпускании кнопки
+        trajectory.setAttribute('d', '');
         
         var pathData = getPath();
         trajectory.setAttribute("d", pathData);
@@ -123,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
     //------------------------------------------------
     //---ЭТОТ БЛОК БОЛЬШЕ НЕ ТРОГАТЬ!!!!!!!!!!!!!!!---
     //------------------------------------------------
-    // Обработчик события перемещения мыши внутри playWindow
     playWindow.addEventListener('mousemove', function (event) {
         if (isMouseDown == true) {
             /*
@@ -250,10 +224,8 @@ var resets = 3;
 
 function startCountdown() {
     changeDif();
-    // Остановить предыдущий таймер, если он был запущен
     clearInterval(timer);
 
-    // Установить начальное значение таймера
     timeLeft = 20;
 
     // Запустить новый таймер
@@ -325,8 +297,8 @@ function getMaxL1Value() {
     let accounts = localStorage.getItem('accounts');
     accounts = accounts ? JSON.parse(accounts) : [];
 
-    const maxL1Value = accounts.reduce((maxL2, account) => {
-        return Math.max(maxL1, account.l2);
+    const maxL2Value = accounts.reduce((maxL2, account) => {
+        return Math.max(maxL2, account.l2);
     }, accounts[0].l2);
 
     return maxL2Value;
