@@ -190,7 +190,7 @@ var resets = 1;
 function startCountdown() {
     clearInterval(timer);
 
-    timeLeft = 45;
+    timeLeft = 30;
 
     timer = setInterval(function () {
         timeLeft--;
