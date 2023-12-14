@@ -23,13 +23,13 @@ function getPath() {
     let thirdY;
 
     mouseX = mouseX >= windowCenterX ? mouseX : windowCenterX + difX;
-    mouseY = (mouseY <= windowCenterY + 200) ? mouseY : windowCenterY + 200;
+    mouseY = (mouseY <= windowCenterY + 150) ? mouseY : windowCenterY + 300;
     
     thirdX = mouseX + difX * power * 2;
     lastX = thirdX + difX;
 
     thirdY = mouseY;
-    var lastY = 400 - ball.offsetWidth;
+    var lastY = 480;
 
     return `M${windowCenterX} ${windowCenterY} C ${mouseX},${mouseY} ${thirdX},${thirdY} ${lastX},${lastY}`;
 }
@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Получаем элементы
     getRandBallPos(playWindow);
     var trajectory = document.querySelector('#trajectory');
-    
 
     // Обработчик события нажатия на мяч
     ball.addEventListener('mousedown', function (event) {
@@ -96,7 +95,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const newPath = `path('${pathData}')`;
         changePath(newPath, 1000);
-        console.log(newPath);
+
+        
     });
 
     //------------------------------------------------
@@ -111,26 +111,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-while (isMouseDown == true) {
-    var pwr = document.getElementById("pwr");
-    if (pwr.getBoundingClientRect().width == 1 || pwr.getBoundingClientRect().width == 50) {
-        step *= -1;
-    }
-    console.log(pwr.getBoundingClientRect().width);
-
-    pwr.style.width = + step;
-    power = pwr.getBoundingClientRect().width / 50;
-    message("jopa");
-}
-
 function changePath(pathString, speed) {
     const ball = document.getElementById('ball');
     const ring = document.getElementById('ring');
     const playWindow = document.querySelector('.playWindow');
 
-    // Присваиваем CSS-свойство offset-path
     ball.style.offsetPath = pathString;
-    // Присваиваем CSS-свойство offset-rotate
     ball.style.offsetRotate = "0deg";
 
     var x = 0;
@@ -138,11 +124,8 @@ function changePath(pathString, speed) {
         const difX = playWindow.offsetLeft;
         const difY = playWindow.offsetTop;
 
-        if (ball.getBoundingClientRect().x - difX >= 890 && ball.getBoundingClientRect().x - difX <= 960 &&
-            ball.getBoundingClientRect().y - difY >= 222 && ball.getBoundingClientRect().y - difY <= 278 && scroeCounter == 1) {
-                message("Попал");
-                scores += 100;
-                document.getElementById("stat").innerHTML = scores;
+        if (ball.getBoundingClientRect().x - playWindow.offsetLeft >= playWindow.offsetWidth) {
+            message("Аут");
         }
         
         if (++x === 50) {
@@ -173,8 +156,8 @@ function changePath(pathString, speed) {
 
 function getRandBallPos(playWindow) {
     const ball = document.getElementById('ball');
-    var posX = Math.random() * (playWindow.offsetWidth / 2 - ball.offsetWidth) + ball.offsetWidth / 2;
-    var posY = 350;
+    var posX = Math.random() * (playWindow.offsetWidth / 6 * 2 - 2 * ball.offsetWidth) + ball.offsetWidth / 2;
+    var posY = 460;
     ball.style.top = `${posY}px`;
     ball.style.left = `${posX}px`;
 }
@@ -288,4 +271,61 @@ function getMaxL1Value() {
     }, accounts[0].l1 || 0); // Используем первое значение l1 в качестве начального значения
 
     return maxL1Value;
+}
+
+function createObstacle(dif) {
+    var id = 0;
+    var rand = Math.floor(Math.random() * 3) + 1 + dif;
+    switch (dif) {
+        case 1: //Нужно сделать
+            createBlock(248, 500, 100, 250, id++);
+            break;
+        case 2:
+            createBlock(0, 500, 500, 250, id++);
+            createBlock(400, 500, 150, 98, id++);
+            break;
+        case 3:
+            createBlock(350, 700, 100, 100, id++);
+            createBlock(150, 500, 100, 100, id++);
+            break;
+        case 4:
+            createBlock(398, 650, 200, 100, id++);
+            break;
+        case 5:
+            createBlock(0, 700, 300, 498, id++);
+            break;
+        case 6:
+            createBlock(400, 500, 350, 98, id++);
+            createBlock(300, 500, 150, 98, id++);
+            break;
+        //Хард готовы
+        case 7:
+            createBlock(348, 500, 300, 150, id++);
+            createBlock(0, 500, 300, 150, id++);
+            break;
+        case 8:
+            createBlock(400, 500, 150, 98, id++);
+            createBlock(400, 850, 150, 98, id++);
+            break;
+        case 9:
+            createBlock(0, 500, 500, 250, id++);
+            createBlock(448, 500, 200, 50, id++);
+            createBlock(448, 798, 200, 50, id++);
+            break;
+    }
+}
+
+createObstacle(1);
+
+function createBlock(top, left, width, height, id) {
+
+    const block = document.createElement("div");
+    block.setAttribute("id", `block${id}`);
+    block.classList.add("block");
+    block.style.left = `${left}px`;
+    block.style.top = `${top}px`;
+    block.style.height = `${height}px`;
+    block.style.width = `${width}px`;
+
+    playWindow.appendChild(block);
 }

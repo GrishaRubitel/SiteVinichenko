@@ -10,7 +10,7 @@
     margin-top: 50px;
     background-color: #00001f;
     border: solid rgb(255, 72, 0) 2px;;
-    height: 400px;
+    height: 500px;
     width: 1000px;
     position: relative;
 }
@@ -84,4 +84,34 @@
     bottom: 0;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.block {
+    position: absolute;
+    background: #000;
+    border: solid 2px red;
+    --s: 80px; /* control the size */
+    --c: #000000;
+    
+    --_g: 
+        #0000 calc(-650%/13) calc(50%/13),var(--c) 0 calc(100%/13),
+        #0000 0 calc(150%/13),var(--c) 0 calc(200%/13),
+        #0000 0 calc(250%/13),var(--c) 0 calc(300%/13);
+    --_g0: repeating-linear-gradient( 45deg,var(--_g));
+    --_g1: repeating-linear-gradient(-45deg,var(--_g));
+    background:
+        var(--_g0),var(--_g0) var(--s) var(--s),
+        var(--_g1),var(--_g1) var(--s) var(--s) #78202f;
+    background-size: calc(2*var(--s)) calc(2*var(--s));
+}
+
+#block1 {
+    left: 500px;
+    top: 248px;
+    height: 150px;
+}
+
+#block2 {
+    left: 500px;
+    height: 150px;
 }

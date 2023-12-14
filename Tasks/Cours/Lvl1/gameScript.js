@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Сбрасываем флаг и переустанавливаем transition
                         isResizing = false;
                         pwrElement.style.transition = 'none';
-                    }, 2000);
-                }, 2000);
+                    }, 3000);
+                }, 3000);
             }, 100);
         }
         
@@ -165,14 +165,12 @@ while (isMouseDown == true) {
     message("jopa");
 }
 
-function changePath(pathString, speed) {
+function changePath(pathString) {
     const ball = document.getElementById('ball');
     const ring = document.getElementById('ring');
     const playWindow = document.querySelector('.playWindow');
 
-    // Присваиваем CSS-свойство offset-path
     ball.style.offsetPath = pathString;
-    // Присваиваем CSS-свойство offset-rotate
     ball.style.offsetRotate = "0deg";
 
     var x = 0;
@@ -186,6 +184,12 @@ function changePath(pathString, speed) {
                 scores += 100;
                 document.getElementById("stat").innerHTML = scores;
         }
+
+        if (ball.getBoundingClientRect().x >= playWindow.offsetWidth) {
+            message("Аут");
+        }
+        
+
         
         if (++x === 50) {
             window.clearInterval(intervalID);
@@ -261,13 +265,11 @@ function startCountdown() {
         if (timeLeft <= 0 && resets > 0) {
             resets -= 1;
 
-            // Если еще есть повторения, увеличиваем сложность и запускаем новый таймер
             if (resets > 0) {
                 dificulty += 1;
 
                 startCountdown();
             } else {
-                // Если повторений больше нет, остановить таймер
                 scroeCounter = 0;
                 clearInterval(timer);
                 finish();
@@ -302,15 +304,12 @@ function finish() {
     const userAccountIndex = accounts.findIndex(account => account.login === login);
 
     if (userAccountIndex !== -1) {
-        // Найден пользователь, обновим значение поля l1
-        if (accounts[userAccountIndex].l1 < scores) {
-            accounts[userAccountIndex].l1 = scores;
-            // Сохраняем изменения в localStorage
+        if (accounts[userAccountIndex].l2 < scores) {
+            accounts[userAccountIndex].l2 = scores;
             localStorage.setItem('accounts', JSON.stringify(accounts));
             message("Новый рекорд!");
         }
     } else {
-        // Пользователь не найден
         console.error("Пользователь не найден");
     }
 
@@ -326,52 +325,9 @@ function getMaxL1Value() {
     let accounts = localStorage.getItem('accounts');
     accounts = accounts ? JSON.parse(accounts) : [];
 
-    // Используем метод reduce для нахождения максимального значения l1
-    const maxL1Value = accounts.reduce((maxL1, account) => {
-        const currentL1 = account.l1 || 0; // Предполагаем, что l1 может быть undefined
-        return Math.max(maxL1, currentL1);
-    }, accounts[0].l1 || 0); // Используем первое значение l1 в качестве начального значения
+    const maxL1Value = accounts.reduce((maxL2, account) => {
+        return Math.max(maxL1, account.l2);
+    }, accounts[0].l2);
 
-    return maxL1Value;
+    return maxL2Value;
 }
-
-let slideSpeed = 5;
-let ballCord = ball.clientLeft;
-let minXPosition = 35;
-let maxXPosition = playWindow.offsetWidth / 2 - ball.offsetWidth / 2;
-
-// Обработчики событий для нажатия и отпускания клавиш
-window.addEventListener("keydown", function (event) {
-    if (event.keyCode === 87) {
-        isWKeyPressed = true;
-    }
-    if (event.keyCode === 83) {
-        isSKeyPressed = true;
-    }
-});
-
-window.addEventListener("keyup", function (event) {
-    if (event.keyCode === 87) {
-        isWKeyPressed = false;
-    }
-    if (event.keyCode === 83) {
-        isSKeyPressed = false;
-    }
-});
-
-function slideHandler() {
-    // Обновляем позицию левой платформы
-    if (isWKeyPressed) {
-        ballCord -= slideSpeed;
-    }
-
-    if (isSKeyPressed) {
-        ballCord += slideSpeed;
-    }
-
-    ball.style.top = `${Math.min(Math.max(ballCord, minXPosition), maxXPosition)}px`;
-    // Запускаем функцию обновления позиции снова через короткий интервал
-    requestAnimationFrame(updateBallPosition);
-}
-
-slideHandler();
