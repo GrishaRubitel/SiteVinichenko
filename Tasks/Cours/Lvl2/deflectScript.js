@@ -166,6 +166,7 @@ function message(text) {
 }
 
 function start() {
+    document.getElementById("start").style.display = "none";
     startCountdown();
     startTimer();
 }
@@ -179,9 +180,10 @@ function startTimer() {
     createObstacle();
     createObstacleBorders();
     scroeCounter = 1;
+    document.getElementById("hoop").innerHTML = levelBeated;
 }
 
-var timeLeft = 20;
+var timeLeft;
 var timer;
 var resets = 1;
 
@@ -277,46 +279,47 @@ function shuffle(array) {
 }
 
 function createObstacle() {
+    console.log(levelBeated);
+    console.log(blockArr);
     var id = 0;
     var lvl = levelOrder[levelBeated];
     switch (lvl) {
-        case 0:
+        case 1:
             createBlock(248, 500, 100, 250, id++);
             break;
-        case 1:
+        case 2:
             createBlock(0, 500, 500, 250, id++);
             createBlock(400, 500, 150, 98, id++);
             break;
-        case 2:
+        case 3:
             createBlock(350, 700, 100, 100, id++);
             createBlock(150, 500, 100, 100, id++);
             break;
-        case 3:
+        case 4:
             createBlock(398, 650, 200, 100, id++);
             break;
-        case 4:
+        case 5:
             createBlock(0, 700, 300, 498, id++);
             break;
-        case 5:
+        case 6:
             createBlock(400, 500, 350, 98, id++);
             createBlock(300, 500, 150, 98, id++);
             break;
-        //Хард готовы
-        case 6:
+        case 7:
             createBlock(348, 500, 300, 150, id++);
             createBlock(0, 500, 300, 150, id++);
             break;
-        case 7:
+        case 8:
             createBlock(400, 500, 150, 98, id++);
             createBlock(400, 850, 150, 98, id++);
             break;
-        case 8:
+        case 9:
             createBlock(0, 500, 500, 250, id++);
             createBlock(448, 500, 200, 50, id++);
             createBlock(448, 798, 200, 50, id++);
             break;
         default:
-            message("Уровни кончились");
+            finish();
             break;
     }
     levelBeated++;
