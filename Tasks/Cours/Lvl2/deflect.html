@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Noto+Sans+Mahajani&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="deflectStyle.css">
+    <link rel="stylesheet" href="../commonAssets.css">
+    <title>Lvl 2</title>
+</head>
+<body>
+    <header class="pattern">
+        <div>
+            <button class="exitButt unlog" onclick="goToAuth()">Выйти</button>
+            <button class="exitButt" onclick="goToLvl(0)">Назад</button>
+            <span id="player">
+                <h3>Player</h3>
+                <span id="nickname"></span>
+            </span>
+            <span id="record">
+                <h3>Record</h3>
+                <span id="recordValue"></span>
+            </span>
+        </div>
+    </header>
+
+    <!---
+    <div class="message displayMes" id="message">
+        <h4>Сообщение!</h4>
+        <div id="messageLine"></div>
+    </div>
+    
+    
+    <div class="authBack" id="start">
+        <div class="authField">
+            <div class="planeText">
+                <h4>Правила</h4>
+                <p>Нужно перебросить мяч через четку.
+                Через каждые три броска уровень будет меняться.
+                Всего бросков - 9</p>
+            </div>
+            <button class="mainButt" onclick="startLevel()">Начать</button>
+            <button class="mainButt" onclick="goToLvl(0)">Назад</button>
+        </div>
+    </div>
+
+    <div class="authBack" id="end">
+        <div class="authField">
+            <div class="planeText">
+                <h3>Уровень пройден!</h4>
+                <h4>Ваш результат</h4>
+                <p id="ownScore"></p>
+                <h4>Рекорд</h4>
+                <p id="allRecord"></p>
+            </div>
+            <button class="mainButt" onclick="goToLvl(2)">Дальше</button>
+            <button class="mainButt" onclick="goToLvl(1)">Повторить</button>
+            <button class="mainButt" onclick="goToLvl(0)">Главное меню</button>
+        </div>
+    </div>
+    --->
+    
+    <div class="authField stats">
+        <h3>Level 1</h3>
+        <div class="scores"><h2>Dificulty</h2><span class="timer" id="dificulty">HARD</span></div>
+        <div class="scores"><h2>Time</h2><span class="timer" id="timeometr">20</span></div>
+        <div class="scores"><h2>Scores</h2><span class="timer" id="stat">0</span></div>
+    </div>
+    
+
+    <section class="gameplayArea" id="gameplayArea">
+        <div class="playWindow">
+            <svg class="area" width="100%" height="100%" id="svgArea">
+                <path class="area" d="" id="trajectory" stroke="red" fill="transparent"/>
+                <div class="ball area" id="ball">
+                    <div class="pwr" id="pwr"></div>
+                </div>
+                <div class="net area"></div>
+                <div class="floor area"></div>
+            </svg>
+        </div>
+    </section>
+</body>
+<script src="deflectScript.js"></script>
+<script src="../commonScripts.js"></script>
+</html>

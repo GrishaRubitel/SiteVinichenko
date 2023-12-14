@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Words</title>
+    <link rel="stylesheet" href="task5_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Noto+Sans+Mahajani&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+</head>
+<body>
+    
+    <a href="../tasks.html"><button class="menu_butt" id="backButt">Назад</button></a>
+
+    <section class="container">
+        <div class="workArea">
+            <div class="wordHolder" id="wordHolder"></div>
+            <section class="inputArea">
+                <div class="targetArea" id="targetArea"></div>
+                <div class="answerArea">
+                    <input class="taskInput" id="taskInput"></input>
+                    <button class="menu_butt" id="explode" onclick="explodeString()">Разобрать</button>
+                    <div class="answerOutput" id="answerOutput"></div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+</body>
+<script src="task5_script_rework.js"></script>
+</html>

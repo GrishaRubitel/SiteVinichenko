@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания</title>
+    <link rel="stylesheet" href="tasks_style.css">
+    <link rel="stylesheet" href="../Logo/style_logo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Noto+Sans+Mahajani&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="full_menu" id="nav_menu">
+        <div class="button_list" id="button_list">
+            <a href="../index.html"></a><button class="menu_butt">Главная</button></a>
+            <a href="../index.html"><button class="menu_butt" onclick="scrollToCars()">Модельный ряд</button></a>
+            <button class="menu_butt" onclick="showMenu()">Задания</button>
+            <a href="Cours/course.html"><button class="menu_butt">Курсовая работа</button></a>
+            <button class="menu_butt" onclick="showMenu()" style="margin-top: 2rem;">Закрыть</button>
+        </div>
+    </div>
+
+    <div id="page">
+        <header id="head" class="head">
+            <button id="open_menu" onclick="showMenu()">&#9776;</button>
+            <a href="../index.html"><span id="logo" class="logo">
+                <span id="L" class="letter">D</span>
+                <span id="R" class="letter">V</span>
+            </span></a>
+            <span class="menu">
+                <a href="../index.html"><button class="menu_butt">Главная</button></a>
+                <button class="menu_butt" onclick="changeAndScroll()">Модельный ряд</button>
+                <a href="tasks.html"><button class="menu_butt">Задания</button></a>
+                <a href="Cours/Authorisation/authIndex.html"><button class="menu_butt">Курсовая работа</button></a>
+            </span>
+        </header>
+
+        <div class="task_list">
+            <div>
+                <a href="TaskNum1/task1.html"><button class="menu_butt">Рисунок рыбок</button></a>
+                <a href="TaskNum2/task2.html"><button class="menu_butt">Ботинки</button></a>
+                <a href="TaskNum3/task3.html"><button class="menu_butt">Flex-box</button></a>
+                <a href="TaskNum4/task4.html"><button class="menu_butt">DOM test</button></a>
+                <a href="TaskNum5/task5.html"><button class="menu_butt">Слова</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+<style></style>
+<script>
+
+    function showMenu() {
+        let page = document.getElementById("page")
+        let nav_menu = document.getElementById("nav_menu")
+        let but_lust = document.getElementById("button_list");
+        if (window.getComputedStyle(page).getPropertyValue("display") == "block") {
+            page.style.display = "none";
+            nav_menu.style.display = "flex";
+            but_lust.style.display = "block";
+        }
+        else {
+            page.style.display = "block";
+            nav_menu.style.display = "none";
+            but_lust.style.display = "none";
+        }
+        console.log(window.getComputedStyle(page).getPropertyValue("display"));
+        console.log(window.getComputedStyle(nav_menu).getPropertyValue("display"));
+    }
+
+</script>
+</html>

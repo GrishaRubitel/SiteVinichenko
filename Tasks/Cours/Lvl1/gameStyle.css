@@ -1,0 +1,108 @@
+.gameplayArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.playWindow {
+    margin-top: 50px;
+    background-color: #00001f;
+    border: solid rgb(255, 72, 0) 2px;;
+    height: 600px;
+    width: 1000px;
+    position: relative;
+}
+
+.area {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.court {
+    z-index: 5;
+    clip-path: polygon(15% 90%, 85% 90%, 100% 100%, 0% 100%);
+    background-color: #fff;
+    
+}
+
+.pillar {
+    z-index: 10;
+    clip-path: polygon(94% 22%, 95% 22%, 95% 93%, 94% 93%);
+    background-color: #fff;
+}
+
+.frame {
+    z-index: 15;
+    clip-path: polygon(90% 25%, 98% 27%, 98% 42%, 90% 39%);
+    background-color: #fff;
+}
+
+.ring {
+    clip-path: polygon(92% 37%, 96% 39%, 93% 43%, 89% 41%);
+    z-index: 25;
+    background-color: blue;
+}
+
+.net {
+    clip-path: polygon(89% 41%, 96% 39%, 94% 47%, 91% 47%);
+    z-index: 20;
+    background-color: red;
+}
+
+.ball {
+    border-radius: 25px;
+    top: 300px;
+    left: 300px;
+    offset-rotate: 0deg;
+    z-index: 50;
+    height: 35px;
+    width: 35px;
+    --s: 50px;
+    --c: rgb(255,73,0);
+    --_s: calc(2*var(--s)) calc(2*var(--s));
+    --_g: 35.36% 35.36% at;
+    --_c: #0000 66%,#20222a 68% 70%,#0000 72%;
+    background: 
+        radial-gradient(var(--_g) 100% 25%,var(--_c)) var(--s) var(--s)/var(--_s), 
+        radial-gradient(var(--_g) 0 75%,var(--_c)) var(--s) var(--s)/var(--_s), 
+        radial-gradient(var(--_g) 100% 25%,var(--_c)) 0 0/var(--_s), 
+        radial-gradient(var(--_g) 0 75%,var(--_c)) 0 0/var(--_s), 
+        repeating-conic-gradient(var(--c) 0 25%,#0000 0 50%) 0 0/var(--_s), 
+        radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c);
+    background-attachment: fixed;
+}
+
+@keyframes move {
+    0% {
+      offset-distance: 0%;
+    }
+    100% {
+      offset-distance: 100%;
+    }
+}
+
+.floor {
+    z-index: 40;
+    background-color: transparent;
+    clip-path: polygon(0% 93%, 0% 94%, 100% 94%, 100% 93%);
+}
+
+#trajectory {
+    z-index: 100;
+}
+
+.pwr {
+    height: 5px;
+    width: 0px;
+    left: 120%;
+    z-index: 51;
+    position: absolute;
+    background-color: red;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}

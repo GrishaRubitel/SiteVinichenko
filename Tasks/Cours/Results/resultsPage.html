@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Noto+Sans+Mahajani&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../commonAssets.css">
+    <link rel="stylesheet" href="resultsStyle.css">
+    <title>Menu</title>
+</head>
+<body>
+
+    <section class="authSection">
+        <div class="authField" id="mainMenu">
+            <div class="planeText">
+                <h3>Игра пройдена!</h4>
+                <h4>Игрок</h4>
+                <p id="nickname"></p>
+                <h4>Уровень 1</h4>
+                <p id="l1"></p>
+                <h4>Уровень 2</h4>
+                <p id="l2"></p>
+                <h4>Уровень 3</h4>
+                <p id="l3"></p>
+                <h4>Всего</h4>
+                <p id="recordValue"></p>
+            </div>
+            <button class="mainButt" onclick="goToLvl(1)">Играть снова</button>
+            <button class="mainButt" onclick="goToLvl(0)">В меню</button>
+        </div>
+    </section>
+
+</body>
+<script src="../commonScripts.js"></script>
+<script src="resultsScript.js"></script>
+</html>

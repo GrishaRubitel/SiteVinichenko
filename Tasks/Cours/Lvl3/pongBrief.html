@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Noto+Sans+Mahajani&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="pongStyle.css">
+    <link rel="stylesheet" href="../commonAssets.css">
+    <title>Pong Brief</title>
+</head>
+<body>
+    <header class="pattern">
+        <div>
+            <button class="exitButt unlog" onclick="goToAuth()">Выйти</button>
+            <button class="exitButt" onclick="goToLvl(0)">Назад</button>
+            <span id="player">
+                <h3>Player</h3>
+                <span id="nickname"></span>
+            </span>
+            <span id="record">
+                <h3>Record</h3>
+                <span id="recordValue"></span>
+            </span>
+        </div>
+    </header>
+
+    <div class="authBack" id="start">
+        <div class="authField">
+            <div class="planeText">
+                <h4>Правила</h4>
+                <p>Нужно отбивать мяч синей платформой.
+                Каждые 20 секунд скорость мяча будет увеличиваться.
+                Матч длится 90 секунд.</p>
+                <p style="text-decoration: underline; text-underline-offset: 5px; color: orange;">Управление: W/S</p>
+            </div>
+            <button class="mainButt" onclick="goToLvl(4)">Начать</button>
+            <button class="mainButt" onclick="goToLvl(0)">Назад</button>
+        </div>
+    </div>
+
+</body>
+<script src="pongScript.js"></script>
+<script src="../commonScripts.js"></script>
+</html>

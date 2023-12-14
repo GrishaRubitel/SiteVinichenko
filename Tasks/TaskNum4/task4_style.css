@@ -1,0 +1,200 @@
+
+body {
+    background-color: #280000;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+#backButt {
+    position: fixed;
+    top: 20px;
+    left: 15px;
+}
+  
+.menu_butt {
+    --c: red;
+    box-shadow: 0 0 0 .1em inset var(--c); 
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background: 
+    var(--_g) calc(var(--_p,0%) - 100%) 0%,
+    var(--_g) calc(200% - var(--_p,0%)) 0%,
+    var(--_g) calc(var(--_p,0%) - 100%) 100%,
+    var(--_g) calc(200% - var(--_p,0%)) 100%;
+    background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+    outline-offset: .1em;
+    transition: background-size .4s, background-position 0s .4s;
+}
+.menu_butt:hover {
+    --_p: 100%;
+    transition: background-position .4s, background-size 0s;
+}
+
+.menu_butt:active {
+    box-shadow: 0 0 9e9q inset #0009; 
+    background-color: var(--c);
+}
+    
+.menu_butt {
+    height: 2rem;
+    width: 10rem;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 5px 25px; 
+    border: none;
+}
+
+.container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 60rem);
+    gap: 1rem 2rem;
+    height: auto;
+    margin-top: 3rem;
+    color: #000;
+    margin-bottom: 3rem;
+}
+
+.qBlock {
+    height: fit-content;
+    transition: all 500ms ease-in-out;
+}
+
+.qLine {
+    text-align: center;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    height: 7rem;
+    width: 56rem;
+    background-color: rgba(10, 0, 0, 0.62);
+    border: rgba(0, 255, 246) 1px solid;
+    transition: all 300ms ease-in-out;
+    padding: 0px 2rem;
+    margin-top: 1rem;
+    opacity: 1;
+}
+
+.guess:hover {
+    background-color: rgb(0, 0, 10);
+    border: rgb(38, 0, 255) 1px solid;
+    height: 6rem;
+}
+
+.ansCont {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 19rem);
+    grid-auto-rows: 5rem;
+    gap: 1rem 1rem;
+    height: auto;
+    margin-top: 1rem;
+    transition: all 400ms ease-in-out;
+}
+
+.ansLine {
+    width: 15rem;
+    padding: 0 2rem;
+    height: 5rem;
+    background-color: rgba(10, 0, 0, 0.62);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: rgba(0, 255, 246) 1px solid;
+    transition: all ease-in-out 200ms;
+    font-size: 15px;
+    text-align: center;
+}
+
+.answer {
+    font-size: 18px;
+    text-align: center;
+    opacity: 0;
+}
+
+.hiddenVar {
+    display: none;
+    transition: all ease-in-out 200ms;
+}
+
+.correct {
+    background-color: rgba(0, 10, 0, 0.62);;
+    color: lightgreen;
+    border-color: lightgreen;
+}
+
+.wrong {
+    color: red;
+    border-color: red;
+}
+
+.shake1 {    
+    & {
+      -webkit-animation-name:              shake;    
+      -webkit-animation-duration:          0.8s;
+      -webkit-animation-iteration-count:   infinite;
+      -webkit-animation-timing-function:   linear;
+      -webkit-transform-origin:            50% 100%;
+    }
+  }
+  
+  @-webkit-keyframes shake {
+    0%  { -webkit-transform:     translate(2px, 1px) rotate(0deg); }
+    10% { -webkit-transform:     translate(-1px, -2px) rotate(-2deg); }
+    20% { -webkit-transform:     translate(-3px, 0px) rotate(3deg); }
+    30% { -webkit-transform:     translate(0px, 2px) rotate(0deg); }
+    40% { -webkit-transform:     translate(1px, -1px) rotate(1deg); }
+    50% { -webkit-transform:     translate(-1px, 2px) rotate(-1deg); }
+    60% { -webkit-transform:     translate(-3px, 1px) rotate(0deg); }
+    70% { -webkit-transform:     translate(2px, 1px) rotate(-2deg); }
+    80% { -webkit-transform:     translate(-1px, -1px) rotate(4deg); }
+    90% { -webkit-transform:     translate(2px, 2px) rotate(0deg); }
+    100%{ -webkit-transform:     translate(1px, -2px) rotate(-1deg); }
+   }
+
+#onStart {
+    position: absolute;
+    top: calc(50% - 20px);
+    left: 42%;
+    z-index: 5;
+    height: 3rem;
+    width: 15rem;
+    font-size: large;
+}
+
+.anEnd {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 200ms ease-in-out;
+}
+
+.anEnd .qLine {
+    background-color: #fff;
+    color: #000;
+    border-color: #000;
+    border-width: 3px;
+}
+
+:root {
+    --qVal: 0;
+    --qNum: 0;
+    --playStat: 0;
+}
+
+.correctAnsw {
+    background-color: lightgreen;
+    color: #000;
+    border-color: #000;
+    border-width: 3px;
+}
+
+.wrongAnsw {
+    background-color: red;
+    border-color: #000;
+    border-width: 3px;
+}   

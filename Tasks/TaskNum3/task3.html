@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 3</title>
+    <link rel="stylesheet" href="task3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Noto+Sans+Mahajani&family=Roboto&display=swap" rel="stylesheet">
+</head>
+</head>
+<body>
+    <a href="../tasks.html"><button class="menu_butt">Назад</button></a>
+
+    <div class="content">
+        <svg width="200" height="200" id="svgpage">
+            <image id="sillyCat" href="/images/f4408ae59bc76f809d049fcc92cbea80.jpg" width="80" height="80" x="200" y="60" display="none"></image>
+            <path id="DPath" d="M0 0
+                                H5
+                                C70 0, 70 -100, 130 -100"
+            stroke="none" fill="transparent" stroke-miterlimit="10" pointer-events="none"/>
+
+            <path id="VPath" d="M0 0
+                                H5 
+                                C70 0, 70 100, 130 115"
+            stroke="none" fill="transparent" stroke-miterlimit="10" pointer-events="none"/>
+            <g id="dTextPath">
+                <text class="D" id="D" dominant-baseline="middle" x="30" y="150">D</text>
+                <animateMotion id="moveD" dur="1s" begin="mouseover" fill="freeze" restart="never">
+                    <mpath xlink:href="#DPath"/>
+                </animateMotion>
+            </g>
+            <g id="vTextPath">
+                <text class="V" id="V" dominant-baseline="middle" x="30" y="50">V</text>
+                <animateMotion id="moveV" dur="1s" begin="mouseover" fill="freeze" restart="never" keyTimes="0;0.5;1">
+                    <mpath xlink:href="#VPath"/>
+                </animateMotion>
+            </g>
+        </svg>
+        <h1 id="carTitle" style="display: none; color: #fff;">this car is so silly</h1>
+    </div>
+</body>
+<script src="task3.js"></script>
+</html>

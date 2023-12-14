@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniil Vinichenko</title>
+    <link rel="stylesheet" href="styleV2.css">
+    <link rel="stylesheet" href="../Logo/style_logo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Noto+Sans+Mahajani&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="readme">
+        <div id="readmeText">
+            <h3>Patch note</h3>
+            <ul>
+                <li>Эта страница исправляет некоторые баги, которые были найдены во время сдачи работы</li>
+                <li>Добавлены кнопки для перехода на страницу курсовой</li>
+                <li>Изменена цветовая палитра на "менее грязную"</li>
+                 <li>Изображение машины всегда покрывает площадь экрана</li>
+                <li>Футер теперь не оставляет под собой пустое пространство при изменении масштаба</li>
+                <li>Новый скролл-бар</li>
+                <li>Мобильная версия: изображения, текст и отдельные элементы больше не вылезают за границы страницы</li>
+                <li>Мобильная версия: карточки машин больше не примыкают к границам экрана, а имеют некоторый отступ</li>
+            </ul>
+        </div>
+        <div id="showReadme">Patch note</div>
+    </div>
+
+    <div class="full_menu" id="nav_menu">
+        <div class="button_list" id="button_list">
+            <button class="menu_butt" onclick="topFunction()">Главная</button>
+            <button class="menu_butt" onclick="scrollToCars()">Модельный ряд</button>
+            <a href="../Tasks/tasks.html"><button class="menu_butt">Задания</button></a>
+            <a href="../Tasks/Cours/Authorisation/authIndex.html"><button class="menu_butt">Курсовая работа</button></a>
+            <a href="../index.html"><button class="menu_butt">Cайт 1.0 </button></a>
+            <button class="menu_butt" onclick="showMenu()" style="margin-top: 2rem;">Закрыть</button>
+        </div>
+    </div>
+
+    <div class="content" id="page">
+        <button onclick="topFunction()" id="to_top" title="Go to top">&#9650</button>
+        <header id="head" class="head">
+            <a onclick="topFunction()"><span id="logo" class="logo">
+                <span id="L" class="letter">D</span>
+                <span id="R" class="letter">V</span>
+            </span></a>
+            <button id="open_menu" onclick="showMenu()">&#9776;</button>
+            <span class="menu">
+                <button class="menu_butt" onclick="topFunction()">Главная</button>
+                <button class="menu_butt" onclick="scrollToCars()">Модельный ряд</button>
+                <a href="../Tasks/tasks.html"><button class="menu_butt">Задания</button></a>
+                <a href="../Tasks/Cours/Authorisation/authIndex.html"><button class="menu_butt">Курсовая работа</button></a>
+                <a href="../index.html"><button class="menu_butt">Cайт 1.0 </button></a>
+            </span>
+        </header>
+
+
+        <div class="belka_filler">
+            <div class="opening_text">
+                <h1>Рейтинг автомобилей из каршеринга</h1>
+                <button class="menu_butt" id="learn_more" onclick="scrollToAboutUs()">Узнать больше</button>
+            </div>
+        </div>
+
+
+        <div class="about_us" id="about_us">
+            <div class="info_container">
+                <span><img src="../images/solaris_row.jpg" alt=""></span>
+                <span>
+                    <ul>Здесь приведена информациях о некоторых машинах из популярных сервисов каршеринга:
+                        <li>Цены</li>
+                        <li>Комплектации</li>
+                        <li>Состояния авто</li>
+                        <li>Оценка опыта эксплуатации</li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+
+
+        <div class="vehicles" id="model_row">
+            <p>Модельный ряд</p>
+            <div class="car_container">
+                <div id="Car1" class="car_grid">
+                    <img src="../images/kia_rio.jpg" alt="">
+                    <a target="_blank" href="https://autopragmat.ru/catalog/kia-rio-iv"><button id="kia_rio" class="menu_butt">Kia Rio</button></a>
+                </div>
+                <div id="Car2" class="car_grid">
+                    <img src="../images/bmwf30.jpg" alt="">
+                    <a target="_blank" href="https://autopragmat.ru/catalog/bmw-3-serii-vi-f30-f31-restayling"><button id="ren_kapture" class="menu_butt">BMW 320i</button></a>
+                </div>
+                <div id="Car3" class="car_grid">
+                    <img src="../images/audi-q3-2011-2014-krossover_14.jpg" alt="">
+                    <a target="_blank" href="https://autopragmat.ru/catalog/audi-q3-i-8u-restayling"><button id="moskvich_3" class="menu_butt">Audi Q3</button></a>
+                </div>
+            </div>
+        </div>
+
+        
+        <footer>
+            <h2 class="info">Контакты</h2>
+            <div class="menu">
+                <a target="_blank" href="https://t.me/grisha_rubitel"><button id="tg">Telegram</button></a>
+                <a target="_blank" href="https://vk.com/grisharubitel"><button id="vk">VK</button></a>
+                <a target="_blank" href="https://instagram.com/strigu_ovcu?igshid=MzMyNGUyNmU2YQ=="><button id="inst">Instagram</button></a>
+                <a target="_blank" href="https://github.com/GrishaRubitel"><button id="git">GitHub</button></a>
+            </div>
+        </footer>
+    </div>
+</body>
+<script src="scriptV2.js"></script>
+<script src="../Tasks/TaskNum3/task3.js"></script>
+</html>

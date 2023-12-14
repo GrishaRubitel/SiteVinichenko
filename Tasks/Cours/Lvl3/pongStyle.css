@@ -1,0 +1,66 @@
+.game {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.field {
+    margin-top: 50px;
+    width: 500px;
+    height: 600px;
+    border: solid red 2px;
+    background-color: #00001f;
+    position: relative;
+}
+
+.center {
+    margin: 0 auto;
+    height: 100%;
+    width: 20px;
+    z-index: 2;
+    background-color: #000033;
+    border-right: solid red 1px;
+    border-left: solid red 1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.plat {
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 50px;
+    width: 7px;
+    border: solid white 1px;
+    position: absolute;
+}
+
+#leftP {
+    background-color: blue;
+    left: 5px;
+}
+
+#rightP {
+    background-color: red;
+    right: 5px;
+}
+
+.pongball {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    z-index: 50;
+    height: 10px;
+    width: 11px;
+    border-radius: 5px;
+    background-color: #fff;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Noto+Sans+Mahajani&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mainStyle.css">
+    <link rel="stylesheet" href="../commonAssets.css">
+    <title>Menu</title>
+</head>
+<body>
+
+    <header class="pattern">
+        <div>
+            <button class="exitButt unlog" onclick="goToAuth()">Выйти</button>
+            <span id="player">
+                <h3>Player</h3>
+                <span id="nickname"></span>
+            </span>
+            <span id="record">
+                <h3>Record</h3>
+                <span id="recordValue"></span>
+            </span>
+        </div>
+    </header>
+
+    <div class="message displayMes" id="message">
+        <h4>Сообщение!</h4>
+        <div id="messageLine"></div>
+    </div>
+
+    <section class="pageArea">
+        
+        <section class="historyArea">
+            <div class="holder">
+                <h2>Таблица рекордов</h2>
+                <div class="historyBack">
+                    <ul class="historyList" id="historyList">
+                        <!---
+                        <li class="listItem">
+                            <span class="listPlaya" id="player">
+                                <h5>Player</h5>
+                                <div class="listBlock" id="nickname"></div>
+                            </span>
+                            <span id="lvl1">
+                                <h5>LVL1</h5>
+                                <div class="listBlock" id="l1"></div>
+                            </span>
+                            <span id="lvl2">
+                                <h5>LVL2</h5>
+                                <div class="listBlock" id="l2"></div>
+                            </span>
+                            <span id="lvl3">
+                                <h5>LVL3</h5>
+                                <div class="listBlock" id="l3"></div>
+                            </span>
+                            <span id="Total">
+                                <h5>Total</h5>
+                                <div class="listBlock" id="recordValue"></div>
+                            </span>
+                        </li>
+                        --->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="selectLevel">
+            <section class="authSection">
+                <div class="authField" id="mainMenu">
+                    <button class="mainButt" id="newGame" onclick="goToLvl(1)">Новая игра</button>
+                    <button class="mainButt" onclick="showLvl()">Выбор уровня</button>
+                    <button class="mainButt" onclick="removeUserAccount()">Удалить профиль</button>
+                    <button class="mainButt" onclick="goToAuth()">Выйти</button>
+                </div>
+
+                <div class="authField" id="levelSelect">
+                    <button class="mainButt" id="newGame" onclick="goToLvl(1)">Уровень 1</button>
+                    <button class="mainButt" onclick="goToLvl(2)">Уровень 2</button>
+                    <button class="mainButt" onclick="goToLvl(3)">Уровень 3</button>
+                    <button class="mainButt" onclick="showMenu()">Назад</button>
+                </div>
+            </section>
+        </section>
+
+    </section>
+</body>
+<script src="mainScript.js"></script>
+<script src="../commonScripts.js"></script>
+</html>

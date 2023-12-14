@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Noto+Sans+Mahajani&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="authStyle.css">
+    <link rel="stylesheet" href="../commonAssets.css">
+    <title>Voleyball</title>
+</head>
+<body>
+
+    <div class="message displayMes" id="message">
+        <h4>Сообщение!</h4>
+        <div id="messageLine"></div>
+    </div>
+
+    <section class="authSection">
+        <div class="authField" id="authField">
+            <input type="text" id="loginAuthField" placeholder="Логин">
+            <input type="password" id="passAuthField" placeholder="Пароль">
+            <button class="mainButt" id="authStart" onclick="logInStart()">Войти</button>
+            <a href="../../../Ver2/indexV2.html"><button class="mainButt">На сайт</button></a>
+            <button class="additionalButt" id="signUpStart" onclick="showSignUp()">Зарегистрироваться</button>
+        </div>
+
+        <div class="authField" id="signUpField">
+            <input type="text" id="loginSignUpField" placeholder="Логин">
+            <input type="password" id="passFirstSugnUpField" placeholder="Пароль">
+            <input type="password" id="passSecondSugnUpField" placeholder="Подтверждение пароля">
+            <button class="mainButt" id="signUpStart" onclick="acceptSignUp()">Регистрация</button>
+            <button class="additionalButt" id="authStart" onclick="showLogin()">Есть аккаунт</button>
+        </div>
+    </section>
+
+</body>
+<script src="authScript.js"></script>
+<script src="../commonScripts.js"></script>
+</html>
