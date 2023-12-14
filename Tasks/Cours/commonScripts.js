@@ -9,7 +9,6 @@ function message(text) {
     }, 3000)
 }
 
-// Функция для получения переменной из параметров URL
 function getVariableFromUrl() {
     var urlParams = new URLSearchParams(window.location.search);
     var variable = urlParams.get("player");
@@ -38,7 +37,7 @@ function getUserData(login) {
         };
         return userData;
     } else {
-        return null; // Если аккаунт не найден
+        return null;
     }
 }
 

@@ -1,15 +1,14 @@
-let dificulty = 1;
 let scores = 0;
 let scroeCounter = 1;
-let step = 1;
-let maxPwr = document.getElementById("pwr").getBoundingClientRect().width;
 let pwrElement = document.getElementById("pwr");
 var isResizing = false;
 var playWindow = document.querySelector('.playWindow');
 var ball = document.querySelector('#ball');
 let isMouseDown = false;
-let isDragging = true;
 let blockArr = [];
+let bonusPoints = 300;
+let levelOrder = shuffle([1, 2, 3]).concat(shuffle([4, 5, 6]).concat(shuffle([7, 8, 9])));
+let levelBeated = 0;
 
 
 function getPath() {
@@ -37,7 +36,6 @@ function getPath() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    getRandBallPos(playWindow);
     var trajectory = document.querySelector('#trajectory');
 
     ball.addEventListener('mousedown', function (event) {
@@ -75,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
         trajectory.setAttribute('d', '');
         
         var pathData = getPath();
-        console.log(pathData);
         trajectory.setAttribute("d", pathData);
 
         const newPath = `path('${pathData}')`;
@@ -106,18 +103,19 @@ function changePath(pathString, speed) {
         const difX = playWindow.offsetLeft;
         const difY = playWindow.offsetTop;
 
-        if (ball.getBoundingClientRect().x - playWindow.offsetLeft >= playWindow.offsetWidth && scroeCounter == 1) {
+        var net = document.getElementById("net");
+        if ((ball.getBoundingClientRect().x - playWindow.offsetLeft >= playWindow.offsetWidth || isElementInside(net)) && scroeCounter == 1) {
             message("Аут");
             scroeCounter = 0;
         }
 
-        for (var i = 0; i < 3; i++) {
-            if (isElementInside(blockArr[i])) {
+        for (const elements of blockArr) {
+            if (isElementInside(elements)) {
                 scroeCounter = 0;
                 message("Попал в красную зону");
             }
         }
-        
+
         if (++x === 50) {
             window.clearInterval(intervalID);
         }
@@ -139,11 +137,15 @@ function changePath(pathString, speed) {
 
     setTimeout(function() {
         ball.style.offsetPath = null;
-        getRandBallPos(playWindow);
+        if (scroeCounter == 1) {
+            scores += 100;
+            document.getElementById("stat").innerHTML = scores;
+        }
+        startTimer();
     }, 2001)
 }
 
-function getRandBallPos(playWindow) {
+function getRandBallPos() {
     const ball = document.getElementById('ball');
     var posX = Math.random() * (playWindow.offsetWidth / 6 * 2 - 2 * ball.offsetWidth) + ball.offsetWidth / 2;
     var posY = 460;
@@ -163,19 +165,30 @@ function message(text) {
     }, 3000)
 }
 
+function start() {
+    startCountdown();
+    startTimer();
+}
+
 function startTimer() {
-    startCountdown()
+    if (levelBeated % 3 == 0) {
+        changeDif();
+    }
+    getRandBallPos();
+    deleteBlocks();
+    createObstacle();
+    createObstacleBorders();
+    scroeCounter = 1;
 }
 
 var timeLeft = 20;
 var timer;
-var resets = 3;
+var resets = 1;
 
 function startCountdown() {
-    changeDif();
     clearInterval(timer);
 
-    timeLeft = 20;
+    timeLeft = 45;
 
     timer = setInterval(function () {
         timeLeft--;
@@ -185,12 +198,10 @@ function startCountdown() {
         if (timeLeft <= 0 && resets > 0) {
             resets -= 1;
             if (resets > 0) {
-                dificulty += 1;
                 startCountdown();
             } else {
-                scroeCounter = 0;
                 clearInterval(timer);
-                finish();
+                bonusPoints = 0;
             }
         }
     }, 1000);
@@ -198,16 +209,16 @@ function startCountdown() {
 
 function changeDif() {
     var difT = document.getElementById("dificulty")
-    switch (dificulty) {
-        case 1:
+    switch (levelBeated) {
+        case 0:
             difT.innerHTML = "EASY";
             difT.style.color = "green";
             break;
-        case 2:
+        case 3:
             difT.innerHTML = "NORM";
             difT.style.color = "orange";
             break;
-        case 3:
+        case 6:
             difT.innerHTML = "HARD";
             difT.style.color = "red";
             break;
@@ -218,6 +229,7 @@ function finish() {
     var login = document.getElementById("nickname").innerHTML;
     let accounts = localStorage.getItem('accounts');
     accounts = accounts ? JSON.parse(accounts) : [];
+    scores += bonusPoints;
 
     const userAccountIndex = accounts.findIndex(account => account.login === login);
 
@@ -228,7 +240,6 @@ function finish() {
             message("Новый рекорд!");
         }
     } else {
-        // Пользователь не найден
         console.error("Пользователь не найден");
     }
 
@@ -251,50 +262,65 @@ function getMaxL2Value() {
     return maxL2Value;
 }
 
-function createObstacle(dif) {
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+  
+    while (currentIndex > 0) {
+  
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+}
+
+function createObstacle() {
     var id = 0;
-    var rand = Math.floor(Math.random() * 3) + 1 + dif;
-    switch (dif) {
-        case 1:
+    var lvl = levelOrder[levelBeated];
+    switch (lvl) {
+        case 0:
             createBlock(248, 500, 100, 250, id++);
             break;
-        case 2:
+        case 1:
             createBlock(0, 500, 500, 250, id++);
             createBlock(400, 500, 150, 98, id++);
             break;
-        case 3:
+        case 2:
             createBlock(350, 700, 100, 100, id++);
             createBlock(150, 500, 100, 100, id++);
             break;
-        case 4:
+        case 3:
             createBlock(398, 650, 200, 100, id++);
             break;
-        case 5:
+        case 4:
             createBlock(0, 700, 300, 498, id++);
             break;
-        case 6:
+        case 5:
             createBlock(400, 500, 350, 98, id++);
             createBlock(300, 500, 150, 98, id++);
             break;
         //Хард готовы
-        case 7:
+        case 6:
             createBlock(348, 500, 300, 150, id++);
             createBlock(0, 500, 300, 150, id++);
             break;
-        case 8:
+        case 7:
             createBlock(400, 500, 150, 98, id++);
             createBlock(400, 850, 150, 98, id++);
             break;
-        case 9:
+        case 8:
             createBlock(0, 500, 500, 250, id++);
             createBlock(448, 500, 200, 50, id++);
             createBlock(448, 798, 200, 50, id++);
             break;
+        default:
+            message("Уровни кончились");
+            break;
     }
-    createObstacleBorders();
+    levelBeated++;
 }
-
-createObstacle(9);
 
 function createBlock(top, left, width, height, id) {
 
@@ -325,4 +351,10 @@ function isElementInside(block) {
         ball.getBoundingClientRect().x <= block.getBoundingClientRect().right &&
         ball.getBoundingClientRect().y <= block.getBoundingClientRect().bottom;
     return isInside;
+}
+
+function deleteBlocks() {
+    for (const elements of blockArr) {
+        elements.remove();
+    }
 }
