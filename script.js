@@ -97,3 +97,12 @@ function showMenu() {
     console.log(window.getComputedStyle(page).getPropertyValue("display"));
     console.log(window.getComputedStyle(nav_menu).getPropertyValue("display"));
 }
+
+let site2 = document.getElementById("blick");
+
+setInterval(function() {
+    site2.style.boxShadow = "#ff5779 0px 0px 10px 5px";
+    setTimeout(function() {
+        site2.style.boxShadow = "transparent 0px 0px 10px 5px";
+    }, 2000);
+}, 4000);

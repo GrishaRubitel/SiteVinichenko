@@ -377,88 +377,13 @@ footer h2 {
 /* ----------Разные медиа-----------*/
 /*----------------------------------*/
 
-@media only screen and (min-width: 800px) {
-    .about_us .info_container {
-        background-color: #8e8e8e;
-        display: grid;
-        justify-content: center;
-        align-items: center;
-        grid-template-columns: repeat(auto-fit, 37rem);
-        grid-auto-rows: 20rem;
-        gap: 2rem 2rem;
-    }
-
-    .full_menu {
-        display: none;
-    }
-
-    .head .menu {
-        display: block;
-    }
-
-    .head #open_menu {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 900px) {
-    .about_us .info_container {
-        background-color: transparent;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        display: flex;
-    }
-
-    .full_menu {
-        display: flex;
-    }
-
-    .head .menu {
-        display: none;
-    }
-
-    .head #open_menu {
-        display: block;
-        right: 7%;
-    }
-
-    .car_grid {
-        width: 85%;
-        margin: auto;
-    }
-
-    .belka_filler #learn_more {
-        width: 70%;
-    }
-
-    .belka_filler .opening_text h1 {
-        font-size: 30px;
-    }
-
-    footer {
-        height: max-content;
-    }
-
-    #logo {
-        margin-left: 30px;
-    }
-
-    .vehicles p {
-        font-size: 35px;
-    }
-
-    .vehicles .car_container {
-        margin: 2rem 20px;
-    }
-}
-
 .readme {
     z-index: 1000;
     position: fixed;
     background-color: transparent;
     left: 20px;
     bottom: 20px;
+    width: auto;
     width: 30%;
 }
 
@@ -499,4 +424,85 @@ footer h2 {
     color: #fff;
     transition: 2000ms all ease-in-out;
     cursor: pointer;
+}
+
+@media only screen and (min-width: 900px) {
+    .about_us .info_container {
+        background-color: #8e8e8e;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(auto-fit, 37rem);
+        grid-auto-rows: 20rem;
+        gap: 2rem 2rem;
+    }
+
+    .full_menu {
+        display: none;
+    }
+
+    .head .menu {
+        display: block;
+    }
+
+    .head #open_menu {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .about_us .info_container {
+        background-color: transparent;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+    }
+
+    .full_menu {
+        display: none;
+    }
+
+    .head .menu {
+        display: none;
+    }
+
+    .head #open_menu {
+        display: block;
+        right: 7%;
+    }
+
+    .car_grid {
+        width: 85%;
+        margin: auto;
+    }
+
+    .belka_filler #learn_more {
+        width: 70%;
+    }
+
+    .belka_filler .opening_text h1 {
+        font-size: 30px;
+    }
+
+    footer {
+        height: max-content;
+    }
+
+    #logo {
+        margin-left: 30px;
+    }
+
+    .vehicles p {
+        font-size: 35px;
+    }
+
+    .vehicles .car_container {
+        margin: 2rem 20px;
+    }
+
+    .readme {
+        width: 90%;
+        font-size: 11px
+    }
 }
