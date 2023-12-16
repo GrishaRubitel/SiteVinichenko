@@ -1,6 +1,7 @@
 let dificulty = 1;
 let scores = 0;
 let scroeCounter = 1;
+let checkOut = 1;
 let step = 1;
 let maxPwr = document.getElementById("pwr").getBoundingClientRect().width;
 let pwrElement = document.getElementById("pwr");
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (isResizing) return;
             isResizing = true;
     
-            pwrElement.style.transition = 'width 1s';
+            pwrElement.style.transition = 'width 2s';
             pwrElement.style.width = '1px';
     
             setTimeout(function () {
@@ -76,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     setTimeout(function () {
                         isResizing = false;
                         pwrElement.style.transition = 'none';
-                    }, 3000);
-                }, 3000);
+                    }, 2000);
+                }, 2000);
             }, 100);
         }
         
@@ -152,14 +153,15 @@ function changePath(pathString) {
         const difX = playWindow.offsetLeft;
         const difY = playWindow.offsetTop;
 
-        if (ball.getBoundingClientRect().x - difX >= 890 && ball.getBoundingClientRect().x - difX <= 960 &&
-            ball.getBoundingClientRect().y - difY >= 222 && ball.getBoundingClientRect().y - difY <= 278 && scroeCounter == 1) {
-                message("Попал");
+        if (ball.getBoundingClientRect().x - difX >= 890 && ball.getBoundingClientRect().x - difX <= 950 &&
+            ball.getBoundingClientRect().y - difY >= 215 && ball.getBoundingClientRect().y - difY <= 278 && scroeCounter == 1) {
+                message("Попадание");
                 scores += 100;
                 document.getElementById("stat").innerHTML = scores;
+                checkOut = 0;
         }
 
-        if (ball.getBoundingClientRect().x >= playWindow.offsetWidth) {
+        if (ball.getBoundingClientRect().x >= playWindow.offsetWidth + playWindow.offsetLeft && checkOut == 1) {
             message("Аут");
         }
         
@@ -201,6 +203,7 @@ function getRandBallPos(dif) {
     }
     ball.style.top = `${posY}px`;
     ball.style.left = `${posX}px`;
+    checkOut = 1;
 }
 
 function message(text) {
