@@ -116,7 +116,7 @@ function changePath(pathString, speed) {
             }
         }
 
-        if (++x === 50) {
+        if (++x == 50) {
             window.clearInterval(intervalID);
         }
     }, 50);

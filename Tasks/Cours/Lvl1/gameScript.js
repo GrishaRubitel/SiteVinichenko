@@ -165,7 +165,7 @@ function changePath(pathString) {
         
 
         
-        if (++x === 50) {
+        if (++x == 50) {
             window.clearInterval(intervalID);
         }
     }, 50);
@@ -297,9 +297,9 @@ function getMaxL1Value() {
     let accounts = localStorage.getItem('accounts');
     accounts = accounts ? JSON.parse(accounts) : [];
 
-    const maxL2Value = accounts.reduce((maxL2, account) => {
-        return Math.max(maxL2, account.l2);
-    }, accounts[0].l2);
+    const maxL1Value = accounts.reduce((maxL1, account) => {
+        return Math.max(maxL1, account.l2);
+    }, accounts[0].l1);
 
-    return maxL2Value;
+    return maxL1Value;
 }
