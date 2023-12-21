@@ -165,8 +165,6 @@ function changePath(pathString) {
             message("Аут");
         }
         
-
-        
         if (++x == 50) {
             window.clearInterval(intervalID);
         }

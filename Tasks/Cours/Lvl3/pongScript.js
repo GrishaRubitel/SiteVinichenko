@@ -116,21 +116,20 @@ function createAndLaunchBall() {
 startCountdown();
 
 
-var timeLeft = 30;
+var timeLeft = 25;
 var timer;
 var resets = 3;
 
 function startCountdown() {
     changeDif();
     clearInterval(timer);
-    timeLeft = 30;
+    timeLeft = 25;
     timer = setInterval(function () {
         timeLeft--;
 
         document.getElementById('timeometr').textContent = timeLeft;
 
         if (timeLeft <= 0 && resets > 0) {
-            message("harder");
             resets -= 1;
             if (resets > 0) {
                 speed += 3;
