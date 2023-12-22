@@ -30,22 +30,14 @@ function getUserData(login) {
         };
         return userData;
     } else {
-        return null; // Если аккаунт не найден
+        return null;
     }
 }
 
-// Функция для динамического создания элементов listItem
 function createListItems(userData) {
-
-
-    // Получаем родительский элемент (ul) по его id
     var historyList = document.getElementById("historyList");
-
-    // Создаем новый элемент listItem
     var listItem = document.createElement("li");
     listItem.className = "listItem";
-
-    // Создаем элемент для информации о игроке
     var playerInfo = document.createElement("span");
     playerInfo.className = "listPlaya";
 
@@ -58,8 +50,6 @@ function createListItems(userData) {
 
     playerInfo.appendChild(playerName);
     playerInfo.appendChild(nicknameBlock);
-
-    // Создаем элемент для Total
     var totalInfo = document.createElement("span");
     totalInfo.id = "Total";
 
@@ -75,7 +65,6 @@ function createListItems(userData) {
 
     listItem.appendChild(playerInfo);
 
-    // Создаем элементы для уровней (LVL1, LVL2, LVL3)
     for (var i = 1; i <= 3; i++) {
         var levelInfo = document.createElement("span");
         levelInfo.id = "lvl" + i;
@@ -95,28 +84,18 @@ function createListItems(userData) {
 
     listItem.appendChild(totalInfo);
 
-    // Добавляем элемент listItem в родительский элемент (ul)
     historyList.appendChild(listItem);
 }
 
 function processLocalStorage() {
-    // Получаем данные из local storage
     const localStorageData = localStorage.getItem('accounts');
 
     if (localStorageData) {
     try {
-        // Парсим JSON-строку из local storage
         const accountsData = JSON.parse(localStorageData);
         const len = accountsData.length;
-
-        // Перебираем каждый элемент структуры accounts
-        /*
-        for (const account of accountsData) {
-        */
         for (var i = 0; i < len; i++) {
-            // Извлекаем необходимые поля
             var acc = accountsData[i];
-            // Создаем структуру userData
             const userData = {
                 login: acc.login,
                 l1: acc.l1,
