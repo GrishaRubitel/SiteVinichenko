@@ -116,7 +116,6 @@ while (isMouseDown == true) {
 
     pwr.style.width = + step;
     power = pwr.getBoundingClientRect().width / 50;
-    message("jopa");
 }
 
 function changePath(pathString) {
