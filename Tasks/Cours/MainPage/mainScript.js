@@ -123,7 +123,7 @@ function processLocalStorage() {
                 l2: acc.l2,
                 l3: acc.l3
             };
-
+            console.log(userData);
             createListItems(userData);
         }
     } catch (error) {

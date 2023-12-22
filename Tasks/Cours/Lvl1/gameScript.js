@@ -101,27 +101,6 @@ document.addEventListener('DOMContentLoaded', function () {
     //------------------------------------------------
     playWindow.addEventListener('mousemove', function (event) {
         if (isMouseDown == true) {
-            /*
-            var top = ball.getBoundingClientRect().y;
-            var left = ball.getBoundingClientRect().x;
-            
-            var windowCenterX = left - playWindow.offsetLeft + 35 / 2;
-            var windowCenterY = top - playWindow.offsetTop + 35 / 2;
-            
-            var windowCenterX = Math.floor(playWindow.getBoundingClientRect().width / 2 - 1) - 200;
-            var windowCenterY =  Math.floor(playWindow.getBoundingClientRect().height / 2 - 1) + 100;
-            
-            
-            var mouseX = event.clientX - playWindow.offsetLeft;
-            var mouseY = event.clientY - playWindow.offsetTop;
-
-            if (mouseY >= windowCenterY) { var mouseY = (mouseY <= windowCenterY + 300) ? mouseY : windowCenterY + 300; }
-            else { var mouseY = (mouseY >= windowCenterY - 300) ? mouseY : windowCenterY - 300; }
-
-            if (mouseX >= windowCenterX) { var mouseX = (mouseX <= windowCenterX + 300) ? mouseX : windowCenterX + 300; }
-            else { var mouseX = (mouseX >= windowCenterX - 300) ? mouseX : windowCenterX - 300; }
-            */
-
             var pathData = getPath();
             trajectory.setAttribute("d", pathData);
         }
@@ -159,6 +138,7 @@ function changePath(pathString) {
                 scores += 100;
                 document.getElementById("stat").innerHTML = scores;
                 checkOut = 0;
+                scroeCounter = 0;
         }
 
         if (ball.getBoundingClientRect().x >= playWindow.offsetWidth + playWindow.offsetLeft && checkOut == 1) {
@@ -202,6 +182,7 @@ function getRandBallPos(dif) {
     ball.style.top = `${posY}px`;
     ball.style.left = `${posX}px`;
     checkOut = 1;
+    scroeCounter = 1;
 }
 
 function message(text) {
@@ -277,8 +258,8 @@ function finish() {
     const userAccountIndex = accounts.findIndex(account => account.login === login);
 
     if (userAccountIndex !== -1) {
-        if (accounts[userAccountIndex].l2 < scores) {
-            accounts[userAccountIndex].l2 = scores;
+        if (accounts[userAccountIndex].l1 < scores) {
+            accounts[userAccountIndex].l1 = scores;
             localStorage.setItem('accounts', JSON.stringify(accounts));
             message("Новый рекорд!");
         }
@@ -299,7 +280,7 @@ function getMaxL1Value() {
     accounts = accounts ? JSON.parse(accounts) : [];
 
     const maxL1Value = accounts.reduce((maxL1, account) => {
-        return Math.max(maxL1, account.l2);
+        return Math.max(maxL1, account.l1);
     }, accounts[0].l1);
 
     return maxL1Value;
