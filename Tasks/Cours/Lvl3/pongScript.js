@@ -115,7 +115,6 @@ function createAndLaunchBall() {
 
 startCountdown();
 
-
 var timeLeft = 25;
 var timer;
 var resets = 3;

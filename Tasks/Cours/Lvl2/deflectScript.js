@@ -9,6 +9,7 @@ let blockArr = [];
 let bonusPoints = 300;
 let levelOrder = shuffle([1, 2, 3]).concat(shuffle([4, 5, 6]).concat(shuffle([7, 8, 9])));
 let levelBeated = 0;
+let lastX;
 
 
 function getPath() {
@@ -20,7 +21,6 @@ function getPath() {
     let difX = Math.abs(mouseX - windowCenterX);    
     var power = pwrElement.offsetWidth / 50;
     let thirdX;
-    let lastX;
     let thirdY;
 
     mouseX = mouseX >= windowCenterX ? mouseX : windowCenterX + difX;
@@ -137,7 +137,7 @@ function changePath(pathString, speed) {
 
     setTimeout(function() {
         ball.style.offsetPath = null;
-        if (scroeCounter == 1) {
+        if (scroeCounter == 1 && lastX > playWindow.offsetWidth / 2) {
             scores += 100;
             document.getElementById("stat").innerHTML = scores;
         }
@@ -160,9 +160,7 @@ function message(text) {
 
     messageBlock.classList.remove("displayMes");
     line.innerHTML = text;
-    setTimeout(function() {
-        messageBlock.classList.add("displayMes");
-    }, 3000)
+    setTimeout(function() { messageBlock.classList.add("displayMes");}, 3000)
 }
 
 function start() {
@@ -256,31 +254,24 @@ function finish() {
 function getMaxL2Value() {
     let accounts = localStorage.getItem('accounts');
     accounts = accounts ? JSON.parse(accounts) : [];
-
     const maxL2Value = accounts.reduce((maxL2, account) => {
         return Math.max(maxL2, account.l2);
     }, accounts[0].l2);
-
     return maxL2Value;
 }
 
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
-  
     while (currentIndex > 0) {
-  
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
   
       [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
-  
     return array;
 }
 
 function createObstacle() {
-    console.log(levelBeated);
-    console.log(blockArr);
     var id = 0;
     var lvl = levelOrder[levelBeated];
     switch (lvl) {

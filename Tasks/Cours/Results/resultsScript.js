@@ -3,7 +3,6 @@ function getUserData() {
     var login = urlParams.get("player");
     let accounts = localStorage.getItem('accounts');
     accounts = accounts ? JSON.parse(accounts) : [];
-
     const userAccount = accounts.find(account => account.login === login);
 
     const userData = {
