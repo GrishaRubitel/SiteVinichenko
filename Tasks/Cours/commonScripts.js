@@ -21,7 +21,7 @@ function getVariableFromUrl() {
 getVariableFromUrl();
 
 function goToAuth() {
-    window.location.href = "../index.html";
+    window.location.href = "../Authorisation/authIndex.html";
 }
 
 function getUserData(login) {
