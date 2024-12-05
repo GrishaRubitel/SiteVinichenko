@@ -33,7 +33,7 @@ function logInStart() {
     const existingAccount = accounts.find(account => account.login === login);
 
     if (existingAccount) {
-        var newPagePath = "../MainPage/mainPage.html";
+        var newPagePath = "/MainPage/mainPage.html";
         window.location.href = newPagePath + "?player=" + encodeURIComponent(login);
     } else {
         acceptSignUp(login);
